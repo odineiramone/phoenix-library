@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :phoenix_library, PhoenixLibrary.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("DATABASE_USERNAME"),
+  password: System.get_env("DATABASE_PASSWORD"),
   database: "phoenix_library_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
