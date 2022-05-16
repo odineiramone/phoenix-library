@@ -24,7 +24,6 @@ defmodule PhoenixLibraryWeb.BooksController do
   end
 
   def update(conn, params) do
-    require IEx; IEx.pry
     {:ok, book} = Book.update(params)
 
     render conn, "show.json", book: book
