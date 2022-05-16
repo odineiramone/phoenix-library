@@ -15,6 +15,7 @@ API de sistema de gerenciamento de biblioteca. Desafio de backend do [DevChallen
   - Renomeie o arquivo `.env.sample` para `.env` e preencha as variáveis de acordo com seu ambiente de desenvolvimento.
   - Rode o comando ` source .env` para usar as variáveis de ambiente na sessão atual do terminal.
   - Crie o banco de dados com `mix ecto.setup`.
+  - Popule o banco de dados com `mix run priv/repo/seeds.exs`.
   - Inicie o servidor da aplicação com `mix phx.server`.
 
 ## Dicas úteis
