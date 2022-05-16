@@ -1,6 +1,6 @@
 # PhoenixLibrary
 
-API de sistema de gerenciamento de biblioteca. Desafio de backend do [DevChallenge](https://www.devchallenge.com.br/challenges/5f0b43f5a5fec43156149043/details).
+API de sistema de gerenciamento de biblioteca. Desafio de backend do [DevChallenge](https://www.devchallenge.com.br/challenges/5f0b43f5a5fec43156149043/details). Para saber como usar a API, veja os arquivos da pasta [`docs`.](https://github.com/odineiramone/phoenix-library/tree/main/docs)
 
 ## Feito com
 
