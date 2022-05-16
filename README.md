@@ -1,19 +1,22 @@
 # PhoenixLibrary
 
-To start your Phoenix server:
+API de sistema de gerenciamento de biblioteca. Desafio de backend do [DevChallenge](https://www.devchallenge.com.br/challenges/5f0b43f5a5fec43156149043/details).
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+## Feito com
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+  - Elixir 1.11.4 🧪
+  - Erlang 23.3.4 👴
+  - Phoenix 1.5.3 🐓
+  - Postgres 13.3 🐘
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Como instalar
 
-## Learn more
+  - Instale as depencencias com `mix deps.get`.
+  - Renomeie o arquivo `.env.sample` para `.env` e preencha as variáveis de acordo com seu ambiente de desenvolvimento.
+  - Rode o comando ` source .env` para usar as variáveis de ambiente na sessão atual do terminal.
+  - Crie o banco de dados com `mix ecto.setup`.
+  - Inicie o servidor da aplicação com `mix phx.server`.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Dicas úteis
+
+  - Para acessar um console interativo com as entidades da sua aplicação em phoenix carregadas, use `iex -S mix`
