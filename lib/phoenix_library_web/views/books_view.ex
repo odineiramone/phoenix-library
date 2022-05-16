@@ -28,7 +28,7 @@ defmodule PhoenixLibraryWeb.BooksView do
       id: book.id,
       publisher: book.publisher,
       authorship: book.authorship,
-      cover_photo_url: book.cover_photo,
+      cover_photo: book.cover_photo,
       inserted_at: book.inserted_at,
       updated_at: book.updated_at
     }

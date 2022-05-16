@@ -14,7 +14,7 @@ Caso prefira, importe o arquivo [`phoenix_library_insomnia.json`](phoenix_librar
               "authorship":[
                  "Douglas Adamns"
               ],
-              "cover_photo_url":"https://i.imgur.com/0FvAVYu.png",
+              "cover_photo":"https://i.imgur.com/0FvAVYu.png",
               "id":"fa79b315-5bbb-4e50-8a37-0866448276ea",
               "inserted_at":"2022-05-16T02:33:15",
               "publisher":"Editora Arqueiro",
@@ -49,7 +49,7 @@ Caso prefira, importe o arquivo [`phoenix_library_insomnia.json`](phoenix_librar
         "authorship": [
           "Douglas Adamns"
         ],
-        "cover_photo_url": "https://i.imgur.com/0FvAVYu.png"
+        "cover_photo": "https://i.imgur.com/0FvAVYu.png"
 
         ,
         "id": "fa79b315-5bbb-4e50-8a37-0866448276ea",
@@ -73,7 +73,7 @@ Caso prefira, importe o arquivo [`phoenix_library_insomnia.json`](phoenix_librar
         "authorship": [
           "Douglas Adamns"
         ],
-        "cover_photo_url": "https://i.imgur.com/0FvAVYu.png",
+        "cover_photo": "https://i.imgur.com/0FvAVYu.png",
         "id": "fa79b315-5bbb-4e50-8a37-0866448276ea",
         "inserted_at": "2022-05-16T02:33:15",
         "publisher": "Editora Arqueiro",
@@ -102,7 +102,7 @@ Caso prefira, importe o arquivo [`phoenix_library_insomnia.json`](phoenix_librar
         "authorship": [
           "Douglas Adamns"
         ],
-        "cover_photo_url": "https://i.imgur.com/0FvAVYu.png",
+        "cover_photo": "https://i.imgur.com/0FvAVYu.png",
         "id": "fa79b315-5bbb-4e50-8a37-0866448276ea",
         "inserted_at": "2022-05-16T02:33:15",
         "publisher": "Editora Arqueiro",
