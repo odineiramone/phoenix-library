@@ -8,9 +8,17 @@ defmodule PhoenixLibraryWeb.BooksView do
     }
   end
 
+  def render("show.json", %{book: book}) do
+    %{
+      status: "success",
+      data: %{book: book_json(book)}
+    }
+  end
+
   defp book_json(book) do
     %{
       title: book.title,
+      id: book.id,
       publisher: book.publisher,
       authorship: book.authorship,
       cover_photo_url: book.cover_photo,
