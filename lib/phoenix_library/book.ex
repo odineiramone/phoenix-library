@@ -15,7 +15,7 @@ defmodule PhoenixLibrary.Book do
     timestamps()
   end
 
-  def changeset(source \\ %__MODULE__{}, params) do
+  defp changeset(source, params) do
     source
     |> cast(params, [:title, :publisher, :cover_photo, :authorship])
     |> validate_required([:title, :publisher, :authorship])
@@ -23,8 +23,11 @@ defmodule PhoenixLibrary.Book do
     |> validate_length(:publisher, min: 5)
   end
 
+  def changeset_create(params), do: changeset(%__MODULE__{}, params)
+  def changeset_update(source, params), do: changeset(source, params)
+
   def create(params) do
-    changeset(params)
+    changeset_create(params)
     |> Repo.insert()
   end
 
@@ -35,7 +38,7 @@ defmodule PhoenixLibrary.Book do
 
   def update(%{id: id} = params) do
     read(id)
-    |> changeset(params)
+    |> changeset_update(params)
     |> Repo.update()
   end
 
