@@ -36,7 +36,7 @@ defmodule PhoenixLibrary.Book do
     |> Repo.get(uuid)
   end
 
-  def update(%{id: id} = params) do
+  def update(%{"id" => id} = params) do
     read(id)
     |> changeset_update(params)
     |> Repo.update()

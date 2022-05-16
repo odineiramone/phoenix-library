@@ -15,6 +15,13 @@ defmodule PhoenixLibraryWeb.BooksView do
     }
   end
 
+  def render("delete.json", %{message: message}) do
+    %{
+      status: "success",
+      data: %{message: message}
+    }
+  end
+
   defp book_json(book) do
     %{
       title: book.title,
