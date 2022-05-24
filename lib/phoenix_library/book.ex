@@ -19,7 +19,7 @@ defmodule PhoenixLibrary.Book do
     source
     |> cast(params, [:title, :publisher, :cover_photo, :authorship])
     |> validate_required([:title, :publisher, :authorship])
-    |> validate_length(:title, min: 5)
+    |> validate_length(:title, min: 4)
     |> validate_length(:publisher, min: 5)
   end
 
@@ -32,23 +32,34 @@ defmodule PhoenixLibrary.Book do
   end
 
   def read(uuid) do
-    __MODULE__
-    |> Repo.get(uuid)
+    case Repo.get(__MODULE__, uuid) do
+      nil -> {:error, "Not found!"}
+      data -> {:ok, data}
+    end
   end
 
   def update(%{"id" => id} = params) do
-    read(id)
-    |> changeset_update(params)
-    |> Repo.update()
+    case read(id) do
+      {:error, "Not found!"} -> {:error, "Not found!"}
+      {:ok, entity} -> update(entity, params)
+    end
   end
 
   def delete(id) do
-    read(id)
-    |> Repo.delete()
+    case read(id) do
+      {:error, "Not found!"} -> {:error, "Not found!"}
+      {:ok, book} -> Repo.delete(book)
+    end
   end
 
   def all do
     __MODULE__
     |> Repo.all()
+  end
+
+  defp update(entity, params) do
+    entity
+    |> changeset_update(params)
+    |> Repo.update()
   end
 end

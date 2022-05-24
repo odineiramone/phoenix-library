@@ -34,4 +34,3 @@ defmodule PhoenixLibraryWeb.BooksView do
     }
   end
 end
-
