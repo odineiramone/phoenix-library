@@ -41,7 +41,7 @@ defmodule PhoenixLibrary.Book do
   def update(%{"id" => id} = params) do
     case read(id) do
       {:error, "Not found!"} -> {:error, "Not found!"}
-      {:ok, entity} -> update(entity, params)
+      {:ok, entity} -> update_entity(entity, params)
     end
   end
 
@@ -57,7 +57,7 @@ defmodule PhoenixLibrary.Book do
     |> Repo.all()
   end
 
-  defp update(entity, params) do
+  defp update_entity(entity, params) do
     entity
     |> changeset_update(params)
     |> Repo.update()
