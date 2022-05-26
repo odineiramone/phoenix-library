@@ -11,15 +11,15 @@ defmodule PhoenixLibraryWeb.ErrorView do
 
   def render("404.json", %{message: {:error, message}}) do
     %{
-      status: "error",
-      message: message
+      status: "fail",
+      data: %{book: message}
     }
   end
 
   def render("400.json", %{changeset: changeset}) do
     %{
-      status: "error",
-      message: translate_errors(changeset)
+      status: "fail",
+      data: translate_errors(changeset)
     }
   end
 

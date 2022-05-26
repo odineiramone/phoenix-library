@@ -9,7 +9,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
 
       conn = get(conn, Routes.books_path(conn, :index))
 
-      expected_response = %{
+      _expected_response = %{
         "books" => [
           %{
             "authorship" => book.authorship,
@@ -31,7 +31,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
 
       conn = get(conn, Routes.books_path(conn, :show, book.id))
 
-      expected_response = %{
+      _expected_response = %{
         "book" => %{
           "authorship" => book.authorship,
           "cover_photo" => book.cover_photo,
@@ -47,7 +47,10 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
     test "retorna mensagem de não encotrado caso o livro não exista", %{conn: conn} do
       conn = get(conn, Routes.books_path(conn, :show, "9085b9df-a383-4a8c-b0af-b93fbc831277"))
 
-      assert json_response(conn, 404) == %{"message" => "Not found!", "status" => "error"}
+      assert json_response(conn, 404) == %{
+               "data" => %{"book" => "Not found!"},
+               "status" => "fail"
+             }
     end
   end
 
@@ -71,12 +74,12 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
       conn: conn
     } do
       expected_response = %{
-        "message" => %{
+        "status" => "fail",
+        "data" => %{
           "authorship" => ["can't be blank"],
           "publisher" => ["can't be blank"],
           "title" => ["can't be blank"]
-        },
-        "status" => "error"
+        }
       }
 
       conn = post(conn, Routes.books_path(conn, :create), %{})
@@ -97,7 +100,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
 
     test "retorna mensagem de livro não encontrado caso o livro não exista", %{conn: conn} do
       book_id = "92a2fa73-5d1c-43a9-8ce0-c9de143be0d5"
-      expected_response = %{"message" => "Not found!", "status" => "error"}
+      expected_response = %{"status" => "fail", "data" => %{"book" => "Not found!"}}
 
       conn = delete(conn, Routes.books_path(conn, :delete, book_id))
 
@@ -134,7 +137,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
       book = insert!(:book)
 
       book_params = %{"title" => ""}
-      expected_response = %{"message" => %{"title" => ["can't be blank"]}, "status" => "error"}
+      expected_response = %{"status" => "fail", "data" => %{"title" => ["can't be blank"]}}
 
       conn = patch(conn, Routes.books_path(conn, :delete, book.id), book_params)
 
@@ -148,7 +151,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
         "title" => "João Gordo: Viva La Vida Tosca"
       }
 
-      expected_response = %{"message" => "Not found!", "status" => "error"}
+      expected_response = %{"status" => "fail", "data" => %{"book" => "Not found!"}}
 
       conn = patch(conn, Routes.books_path(conn, :delete, book_id), book_params)
 

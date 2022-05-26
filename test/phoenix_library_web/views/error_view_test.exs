@@ -10,8 +10,8 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
     message = %{message: {:error, "Not found!"}}
 
     expected_response = %{
-      message: "Not found!",
-      status: "error"
+      data: %{book: "Not found!"},
+      status: "fail"
     }
 
     assert render(PhoenixLibraryWeb.ErrorView, "404.json", message) == expected_response
@@ -21,12 +21,12 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
     changeset = Book.changeset_create(%{})
 
     expected_response = %{
-      message: %{
+      data: %{
         authorship: ["can't be blank"],
         publisher: ["can't be blank"],
         title: ["can't be blank"]
       },
-      status: "error"
+      status: "fail"
     }
 
     assert render(PhoenixLibraryWeb.ErrorView, "400.json", %{changeset: changeset}) ==
