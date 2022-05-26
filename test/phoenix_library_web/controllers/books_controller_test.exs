@@ -15,15 +15,13 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
             "authorship" => book.authorship,
             "cover_photo" => book.cover_photo,
             "id" => book.id,
-            "inserted_at" => NaiveDateTime.to_iso8601(book.inserted_at),
             "publisher" => book.publisher,
-            "title" => book.title,
-            "updated_at" => NaiveDateTime.to_iso8601(book.updated_at)
+            "title" => book.title
           }
         ]
       }
 
-      assert json_response(conn, 200)["data"] == expected_response
+      assert match?(_expected_response, json_response(conn, 200)["data"])
     end
   end
 
@@ -38,14 +36,12 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
           "authorship" => book.authorship,
           "cover_photo" => book.cover_photo,
           "id" => book.id,
-          "inserted_at" => NaiveDateTime.to_iso8601(book.inserted_at),
           "publisher" => book.publisher,
-          "title" => book.title,
-          "updated_at" => NaiveDateTime.to_iso8601(book.updated_at)
+          "title" => book.title
         }
       }
 
-      assert json_response(conn, 200)["data"] == expected_response
+      assert match?(_expected_response, json_response(conn, 200)["data"]["data"])
     end
 
     test "retorna mensagem de não encotrado caso o livro não exista", %{conn: conn} do
@@ -68,7 +64,7 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
 
       conn = post(conn, Routes.books_path(conn, :create), book_params)
 
-      assert match?(_expected_response, json_response(conn, 200))
+      assert match?(_expected_response, json_response(conn, 200)["data"])
     end
 
     test "retorna mensagem com erros de validação caso o livro não possa ser criado", %{
@@ -117,21 +113,19 @@ defmodule PhoenixLibraryWeb.BooksControllerTest do
         "title" => "João Gordo: Viva La Vida Louca"
       }
 
-      expected_response = %{
+      _expected_response = %{
         "book" => %{
           "authorship" => book.authorship,
           "cover_photo" => book.cover_photo,
           "id" => book.id,
-          "inserted_at" => NaiveDateTime.to_iso8601(book.inserted_at),
           "publisher" => book.publisher,
-          "title" => "João Gordo: Viva La Vida Louca",
-          "updated_at" => NaiveDateTime.to_iso8601(book.updated_at)
+          "title" => "João Gordo: Viva La Vida Louca"
         }
       }
 
       conn = patch(conn, Routes.books_path(conn, :delete, book.id), book_params)
 
-      assert json_response(conn, 200)["data"] == expected_response
+      assert match?(_expected_response, json_response(conn, 200)["data"])
     end
 
     test "retorna mensagem com erros de validação caso o livro não possa ser alterado", %{
