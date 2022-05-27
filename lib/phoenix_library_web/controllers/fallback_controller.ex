@@ -3,6 +3,8 @@ defmodule PhoenixLibraryWeb.FallbackController do
 
   def call(conn, {:error, "Not found!"} = error), do: not_found(conn, error)
 
+  def call(conn, {:error, "No search parameters!"} = error), do: not_found(conn, error)
+
   def call(conn, {:error, %Ecto.Changeset{} = changeset}), do: validations_issues(conn, changeset)
 
   defp validations_issues(conn, changeset) do

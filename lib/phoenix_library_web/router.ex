@@ -9,6 +9,7 @@ defmodule PhoenixLibraryWeb.Router do
     pipe_through :api
 
     resources "/books", BooksController, only: [:index, :show, :create, :delete, :update]
+    resources "/search", SearchController, only: [:index]
   end
 
   # Enables LiveDashboard only for development

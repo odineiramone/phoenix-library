@@ -32,3 +32,31 @@ Book.create(%{
   cover_photo: "https://i.imgur.com/0FvAVYu.png",
   authorship: ["Douglas Adamns"]
 })
+
+Book.create(%{
+  title: "O Senhor das Moscas",
+  publisher: "Alfaguara",
+  cover_photo: "",
+  authorship: ["William Golding"]
+})
+
+Book.create(%{
+  title: "O Senhor dos Anéis: A Sociedade do Anel",
+  publisher: "Martins Fontes",
+  cover_photo: "",
+  authorship: ["J. R. R. Tolkien"]
+})
+
+Book.create(%{
+  title: "O Hobbit",
+  publisher: "Martins Fontes",
+  cover_photo: "",
+  authorship: ["J. R. R. Tolkien"]
+})
+
+Book.create(%{
+  title: "1984",
+  publisher: "Companhia das Letras",
+  cover_photo: "",
+  authorship: ["George Orwell"]
+})
