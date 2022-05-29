@@ -60,9 +60,9 @@ defmodule PhoenixLibrary.BookTest do
     end
   end
 
-  describe "changeset_update/2" do
+  describe "update_changeset/2" do
     test "com dados válidos retorna um changeset válido" do
-      changeset = Book.changeset_update(%Book{}, @valid_attrs)
+      changeset = Book.update_changeset(%Book{}, @valid_attrs)
 
       assert changeset.valid?
     end

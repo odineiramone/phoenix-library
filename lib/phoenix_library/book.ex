@@ -24,7 +24,7 @@ defmodule PhoenixLibrary.Book do
   end
 
   def create_changeset(params), do: changeset(%__MODULE__{}, params)
-  def changeset_update(source, params), do: changeset(source, params)
+  def update_changeset(source, params), do: changeset(source, params)
 
   def create(params) do
     create_changeset(params)
@@ -59,7 +59,7 @@ defmodule PhoenixLibrary.Book do
 
   defp update_entity(entity, params) do
     entity
-    |> changeset_update(params)
+    |> update_changeset(params)
     |> Repo.update()
   end
 end
