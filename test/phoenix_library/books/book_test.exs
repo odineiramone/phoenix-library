@@ -10,13 +10,6 @@ defmodule PhoenixLibrary.Books.BookTest do
     cover_photo: "imagem da capa"
   }
 
-  @update_attrs %{
-    title: "titulo atualizado",
-    publisher: "editora atualizada",
-    authorship: ["autoria atualizada"],
-    cover_photo: "imagem da capa atualizada"
-  }
-
   @invalid_attrs %{title: nil, publisher: nil, authorship: nil, cover_photo: nil}
 
   describe "validações" do
