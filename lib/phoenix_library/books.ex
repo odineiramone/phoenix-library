@@ -2,7 +2,8 @@ defmodule PhoenixLibrary.Books do
   alias PhoenixLibrary.{Books.Book, Repo}
 
   def create_book(params) do
-    Book.create_changeset(params)
+    params
+    |> Book.create_changeset()
     |> Repo.insert()
   end
 
