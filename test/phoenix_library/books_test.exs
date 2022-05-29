@@ -104,6 +104,62 @@ defmodule PhoenixLibrary.BooksTest do
     end
   end
 
+  describe "by_title/1" do
+    setup do
+      insert_books
+    end
+
+    test "retorna lista com livros encontrados na busca por título", %{
+      book_1: _,
+      book_2: book_2,
+      book_3: book_3
+    } do
+      assert Books.by_title("senhor") == [book_2, book_3]
+    end
+  end
+
+  describe "by_authorship/1" do
+    setup do
+      insert_books
+    end
+
+    test "retorna lista com livros encontrados na busca por autoria", %{
+      book_1: book_1,
+      book_2: book_2,
+      book_3: _
+    } do
+      assert Books.by_authorship("tolkien") == [book_1, book_2]
+    end
+  end
+
+  def insert_books do
+    book_1 =
+      insert!(:book,
+        title: "O Hobbit",
+        publisher: "Martins Fontes",
+        cover_photo: "",
+        authorship: ["J. R. R. Tolkien"]
+      )
+
+    book_2 =
+      insert!(:book,
+        title: "O Senhor dos Anéis: A Sociedade do Anel",
+        publisher: "Martins Fontes",
+        cover_photo: "",
+        authorship: ["J. R. R. Tolkien"]
+      )
+
+    book_3 =
+      insert!(:book,
+        title: "O Senhor das Moscas",
+        publisher: "Alfaguara",
+        cover_photo: "",
+        authorship: ["William Golding"]
+      )
+
+    %{book_1: book_1, book_2: book_2, book_3: book_3}
+  end
+
   defp convert_keys_to_string(map) do
     map
     |> Map.new(fn {key, value} -> {Atom.to_string(key), value} end)
