@@ -22,7 +22,7 @@ defmodule PhoenixLibraryWeb.BooksController do
   end
 
   def delete(conn, %{"id" => id}) do
-    with {:ok, %Book{} = book} <- Book.delete(id) do
+    with {:ok, %Book{}} <- Book.delete(id) do
       render(conn, "delete.json", message: "Book deleted!")
     end
   end
