@@ -4,6 +4,10 @@ defmodule PhoenixLibrary.Books.Book do
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}
 
+  @optional_fields ~w(cover_photo)a
+  @required_fields ~w(title publisher authorship)a
+  @castable_fields @optional_fields ++ @required_fields
+
   schema "books" do
     field :title, :string
     field :publisher, :string
@@ -15,8 +19,8 @@ defmodule PhoenixLibrary.Books.Book do
 
   defp changeset(source, params) do
     source
-    |> cast(params, [:title, :publisher, :cover_photo, :authorship])
-    |> validate_required([:title, :publisher, :authorship])
+    |> cast(params, @castable_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:title, min: 4)
     |> validate_length(:publisher, min: 5)
   end
