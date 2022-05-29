@@ -4,7 +4,7 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
   # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
-  alias PhoenixLibrary.Book
+  alias PhoenixLibrary.Books.Book
 
   test "renders 404.json" do
     message = %{message: {:error, "Not found!"}}

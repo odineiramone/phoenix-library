@@ -1,7 +1,7 @@
 defmodule PhoenixLibrary.Search do
   import Ecto.Query, only: [from: 2]
 
-  alias PhoenixLibrary.{Book, Repo}
+  alias PhoenixLibrary.{Books.Book, Repo}
 
   def call(%{"title" => search_term}), do: {:ok, by_title(search_term)}
 
