@@ -1,4 +1,6 @@
 defmodule PhoenixLibrary.Books do
+  import Ecto.Query, only: [from: 2]
+
   alias PhoenixLibrary.{Books.Book, Repo}
 
   def create_book(params) do
@@ -30,6 +32,22 @@ defmodule PhoenixLibrary.Books do
 
   def list_books do
     Book
+    |> Repo.all()
+  end
+
+  def by_title(search_term) do
+    wildcard_search = "%#{search_term}%"
+
+    from(book in Book, where: ilike(book.title, ^wildcard_search))
+    |> Repo.all()
+  end
+
+  def by_authorship(search_term) do
+    wildcard_search = "%#{search_term}%"
+
+    from(book in Book,
+      where: ilike(fragment("ARRAY_TO_STRING(?, ',')", book.authorship), ^wildcard_search)
+    )
     |> Repo.all()
   end
 
