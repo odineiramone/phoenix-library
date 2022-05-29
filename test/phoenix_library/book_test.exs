@@ -23,12 +23,12 @@ defmodule PhoenixLibrary.BookTest do
 
   describe "validações" do
     test "cover_photo não é obrigatório" do
-      changeset = Book.changeset_create(Map.delete(@valid_attrs, :cover_photo))
+      changeset = Book.create_changeset(Map.delete(@valid_attrs, :cover_photo))
       assert changeset.valid?
     end
 
     test "title, publisher e authorship são obrigatórios" do
-      changeset = Book.changeset_create(@invalid_attrs)
+      changeset = Book.create_changeset(@invalid_attrs)
 
       assert errors_on(changeset) == %{
                publisher: ["can't be blank"],
@@ -39,22 +39,22 @@ defmodule PhoenixLibrary.BookTest do
 
     test "title deve ter pelo menos 4 caracteres" do
       attrs = %{@valid_attrs | title: "abc"}
-      changeset = Book.changeset_create(attrs)
+      changeset = Book.create_changeset(attrs)
 
       assert errors_on(changeset) == %{title: ["should be at least 4 character(s)"]}
     end
 
     test "publisher deve ter pelo menos 5 caracteres" do
       attrs = %{@valid_attrs | publisher: "abcd"}
-      changeset = Book.changeset_create(attrs)
+      changeset = Book.create_changeset(attrs)
 
       assert errors_on(changeset) == %{publisher: ["should be at least 5 character(s)"]}
     end
   end
 
-  describe "changeset_create/1" do
+  describe "create_changeset/1" do
     test "com dados válidos retorna um changeset válido" do
-      changeset = Book.changeset_create(@valid_attrs)
+      changeset = Book.create_changeset(@valid_attrs)
 
       assert changeset.valid?
     end

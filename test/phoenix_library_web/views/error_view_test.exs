@@ -18,7 +18,7 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
   end
 
   test "renders 400.json" do
-    changeset = Book.changeset_create(%{})
+    changeset = Book.create_changeset(%{})
 
     expected_response = %{
       data: %{

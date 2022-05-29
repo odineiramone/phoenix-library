@@ -23,11 +23,11 @@ defmodule PhoenixLibrary.Book do
     |> validate_length(:publisher, min: 5)
   end
 
-  def changeset_create(params), do: changeset(%__MODULE__{}, params)
+  def create_changeset(params), do: changeset(%__MODULE__{}, params)
   def changeset_update(source, params), do: changeset(source, params)
 
   def create(params) do
-    changeset_create(params)
+    create_changeset(params)
     |> Repo.insert()
   end
 
