@@ -6,5 +6,5 @@ defmodule PhoenixLibrary.Search do
 
   def call(%{"authorship" => search_term}), do: {:ok, Books.by_authorship(search_term)}
 
-  def call(%{}), do: {:error, "No search parameters!"}
+  def call(%{}), do: {:error, :not_found}
 end

@@ -7,7 +7,7 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
   alias PhoenixLibrary.Books.Book
 
   test "renders 404.json" do
-    message = %{message: {:error, "Not found!"}}
+    message = %{message: "Not found!"}
 
     expected_response = %{
       data: %{book: "Not found!"},

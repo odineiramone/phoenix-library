@@ -13,7 +13,7 @@ defmodule PhoenixLibrary.SearchTest do
     end
 
     test "com parâmetros inválidos, retorna um erro" do
-      assert {:error, "No search parameters!"} = Search.call(%{"teste" => "teste"})
+      assert {:error, :not_found} = Search.call(%{"teste" => "teste"})
     end
   end
 end

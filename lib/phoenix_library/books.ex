@@ -11,21 +11,21 @@ defmodule PhoenixLibrary.Books do
 
   def load_book(uuid) do
     case Repo.get(Book, uuid) do
-      nil -> {:error, "Not found!"}
+      nil -> {:error, :not_found}
       data -> {:ok, data}
     end
   end
 
   def update_book(%{"id" => id} = params) do
     case load_book(id) do
-      {:error, "Not found!"} -> {:error, "Not found!"}
+      {:error, :not_found} -> {:error, :not_found}
       {:ok, entity} -> update_entity(entity, params)
     end
   end
 
   def delete_book(id) do
     case load_book(id) do
-      {:error, "Not found!"} -> {:error, "Not found!"}
+      {:error, :not_found} -> {:error, :not_found}
       {:ok, book} -> Repo.delete(book)
     end
   end

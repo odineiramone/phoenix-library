@@ -9,7 +9,7 @@ defmodule PhoenixLibraryWeb.ErrorView do
   #   %{errors: %{detail: "Internal Server Error"}}
   # end
 
-  def render("404.json", %{message: {:error, message}}) do
+  def render("404.json", %{message: message}) do
     %{
       status: "fail",
       data: %{book: message}

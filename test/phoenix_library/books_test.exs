@@ -43,7 +43,7 @@ defmodule PhoenixLibrary.BooksTest do
     end
 
     test "com um id inexistente retorna erro" do
-      assert Books.load_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, "Not found!"}
+      assert Books.load_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, :not_found}
     end
   end
 
@@ -67,7 +67,7 @@ defmodule PhoenixLibrary.BooksTest do
         Map.put(@update_attrs, :id, "e14c912e-ddeb-11ec-9d64-0242ac120002")
         |> convert_keys_to_string()
 
-      assert Books.update_book(update_args) == {:error, "Not found!"}
+      assert Books.update_book(update_args) == {:error, :not_found}
     end
   end
 
@@ -76,11 +76,11 @@ defmodule PhoenixLibrary.BooksTest do
       book = insert!(:book)
 
       assert {:ok, _} = Books.delete_book(book.id)
-      assert(Books.load_book(book.id) == {:error, "Not found!"})
+      assert(Books.load_book(book.id) == {:error, :not_found})
     end
 
     test "com um id inexistente retorna erro" do
-      assert Books.delete_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, "Not found!"}
+      assert Books.delete_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, :not_found}
     end
   end
 
@@ -106,7 +106,7 @@ defmodule PhoenixLibrary.BooksTest do
 
   describe "by_title/1" do
     setup do
-      insert_books
+      insert_books()
     end
 
     test "retorna lista com livros encontrados na busca por título", %{
@@ -120,7 +120,7 @@ defmodule PhoenixLibrary.BooksTest do
 
   describe "by_authorship/1" do
     setup do
-      insert_books
+      insert_books()
     end
 
     test "retorna lista com livros encontrados na busca por autoria", %{
