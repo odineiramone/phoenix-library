@@ -1,4 +1,16 @@
 defmodule PhoenixLibrary.Books do
+  @moduledoc """
+  Fornece funções para manipular registros de Book no banco de dados:
+
+  - Função `create_book/1` para criar um novo livro.
+  - Função `load_book/1` para carregar um livro existente.
+  - Função `update_book/1` para atualizar um livro existente.
+  - Função `delete_book/1` para deletar um livro existente.
+  - Função `list_books/0` para listar todos os livros existentes no banco de dados.
+  - Função `by_title/1` para pesquisar livros por título.
+  - Função `by_authorship/1` para pesquisar livros por autoria.
+  """
+
   import Ecto.Query, only: [from: 2]
 
   alias PhoenixLibrary.{Books.Book, Repo}

@@ -1,4 +1,8 @@
 defmodule PhoenixLibrary.Search do
+  @moduledoc """
+  Fornece a função `call/1` para pesquisar livros por título ou autoria.
+  """
+
   alias PhoenixLibrary.Books
 
   # fazer teste checando se o retorno é um {:ok, lista de Book}

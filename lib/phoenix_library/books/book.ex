@@ -1,4 +1,10 @@
 defmodule PhoenixLibrary.Books.Book do
+  @moduledoc """
+  Fornece a função `create_changeset/1` para criar um novo registro no banco
+  de dados e fornece a função `update_changeset/2` para atualizar um registro
+  existente no banco de dados.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
