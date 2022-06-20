@@ -15,21 +15,19 @@ defmodule PhoenixLibrary.Search do
 
   ## Exemplos
 
-    iex> PhoenixLibrary.Search.call(%{"title" => "elixir"})
+  ```elixir
+  iex> PhoenixLibrary.Search.call(%{"title" => "elixir"})
+  {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
 
-    {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
+  iex> PhoenixLibrary.Search.call(%{"authorship" => "valim"})
+  {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
 
-    iex> PhoenixLibrary.Search.call(%{"authorship" => "valim"})
+  iex> PhoenixLibrary.Search.call(%{"publisher" => "O'Reilly Media"})
+  {:error, :not_found}
+  iex> PhoenixLibrary.Search.call(%{})    
 
-    {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
-
-    iex> PhoenixLibrary.Search.call(%{"publisher" => "O'Reilly Media"})
-
-    {:error, :not_found}
-
-    iex> PhoenixLibrary.Search.call(%{})    
-    
-    {:error, :not_found}
+  {:error, :not_found}
+  ```
   """
   def call(%{"title" => search_term}), do: {:ok, Books.by_title(search_term)}
   def call(%{"authorship" => search_term}), do: {:ok, Books.by_authorship(search_term)}

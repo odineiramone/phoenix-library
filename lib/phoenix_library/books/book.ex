@@ -40,14 +40,15 @@ defmodule PhoenixLibrary.Books.Book do
 
   ## Exemplos
 
-    iex> PhoenixLibrary.Books.Book.create_changeset(%{
-           title: "Adopting Elixir",
-           publisher: "The Pragmatic Programmers",
-           authorship: ["Ben Marx", "José Valim", "Bruce Tate"],
-           cover_photo: "https://pragprog.com/titles/tvmelixir/adopting-elixir/tvmelixir.jpg"
-         })
-
-    #Ecto.Changeset<...>
+  ```elixir
+  iex> PhoenixLibrary.Books.Book.create_changeset(%{
+         title: "Adopting Elixir",
+         publisher: "The Pragmatic Programmers",
+         authorship: ["Ben Marx", "José Valim", "Bruce Tate"],
+         cover_photo: "https://pragprog.com/titles/tvmelixir/adopting-elixir/tvmelixir.jpg"
+       })
+  #Ecto.Changeset<...>
+  ```
   """
   def create_changeset(params), do: changeset(%__MODULE__{}, params)
 
@@ -61,12 +62,13 @@ defmodule PhoenixLibrary.Books.Book do
 
   ## Exemplos
 
-    iex> PhoenixLibrary.Books.Book.update_changeset(
-          %PhoenixLibrary.Books.Book{...},
-          %{title: "Adopting Elixir - From Concept to Production"}
-         )
-
-    #Ecto.Changeset<...>
+  ```elixir
+  iex> PhoenixLibrary.Books.Book.update_changeset(
+        %PhoenixLibrary.Books.Book{...},
+        %{title: "Adopting Elixir - From Concept to Production"}
+       )
+  #Ecto.Changeset<...>
+  ```
   """
   def update_changeset(source, params), do: changeset(source, params)
 end
