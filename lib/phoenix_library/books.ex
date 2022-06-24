@@ -139,8 +139,7 @@ defmodule PhoenixLibrary.Books do
   ```
   """
   def list_books do
-    Book
-    |> Repo.all()
+    Repo.all(Book)
   end
 
   @doc """
@@ -164,8 +163,7 @@ defmodule PhoenixLibrary.Books do
   def by_title(search_term) do
     wildcard_search = "%#{search_term}%"
 
-    from(book in Book, where: ilike(book.title, ^wildcard_search))
-    |> Repo.all()
+    Repo.all(from(book in Book, where: ilike(book.title, ^wildcard_search)))
   end
 
   @doc """
@@ -189,10 +187,11 @@ defmodule PhoenixLibrary.Books do
   def by_authorship(search_term) do
     wildcard_search = "%#{search_term}%"
 
-    from(book in Book,
-      where: ilike(fragment("ARRAY_TO_STRING(?, ',')", book.authorship), ^wildcard_search)
+    Repo.all(
+      from(book in Book,
+        where: ilike(fragment("ARRAY_TO_STRING(?, ',')", book.authorship), ^wildcard_search)
+      )
     )
-    |> Repo.all()
   end
 
   defp update_entity(entity, params) do
