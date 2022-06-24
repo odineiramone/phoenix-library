@@ -27,8 +27,8 @@ defmodule PhoenixLibrary.Books.Book do
     source
     |> cast(params, @castable_fields)
     |> validate_required(@required_fields)
-    |> validate_length(:title, min: 4)
-    |> validate_length(:publisher, min: 5)
+    |> validate_length(:title, min: 4, max: 255)
+    |> validate_length(:publisher, min: 5, max: 255)
   end
 
   @doc """

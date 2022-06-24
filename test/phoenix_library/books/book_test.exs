@@ -12,6 +12,11 @@ defmodule PhoenixLibrary.Books.BookTest do
 
   @invalid_attrs %{title: nil, publisher: nil, authorship: nil, cover_photo: nil}
 
+  @text_with_256_chars "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec vitae vestibulum nisl, at varius libero. Etiam cursus varius est ut tempus.
+    Quisque vitae suscipit tortor. Phasellus neque nisl, sagittis sed sem eget, venenatis
+    ullamcorper odio. Mauris iacul."
+
   describe "validações" do
     test "cover_photo não é obrigatório" do
       changeset = Book.create_changeset(Map.delete(@valid_attrs, :cover_photo))
@@ -35,11 +40,25 @@ defmodule PhoenixLibrary.Books.BookTest do
       assert errors_on(changeset) == %{title: ["should be at least 4 character(s)"]}
     end
 
+    test "title deve ter até 255 caracteres" do
+      attrs = %{@valid_attrs | title: @text_with_256_chars}
+      changeset = Book.create_changeset(attrs)
+
+      assert errors_on(changeset) == %{title: ["should be at most 255 character(s)"]}
+    end
+
     test "publisher deve ter pelo menos 5 caracteres" do
       attrs = %{@valid_attrs | publisher: "abcd"}
       changeset = Book.create_changeset(attrs)
 
       assert errors_on(changeset) == %{publisher: ["should be at least 5 character(s)"]}
+    end
+
+    test "publisher deve ter até 255 caracteres" do
+      attrs = %{@valid_attrs | publisher: @text_with_256_chars}
+      changeset = Book.create_changeset(attrs)
+
+      assert errors_on(changeset) == %{publisher: ["should be at most 255 character(s)"]}
     end
   end
 
