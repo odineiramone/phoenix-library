@@ -35,15 +35,15 @@ defmodule PhoenixLibrary.BooksTest do
     end
   end
 
-  describe "load_book/1" do
+  describe "find_book/1" do
     test "com um id existente retorna um livro" do
       book = insert!(:book)
 
-      assert Books.load_book(book.id) == {:ok, book}
+      assert Books.find_book(book.id) == {:ok, book}
     end
 
     test "com um id inexistente retorna erro" do
-      assert Books.load_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, :not_found}
+      assert Books.find_book("e14c912e-ddeb-11ec-9d64-0242ac120002") == {:error, :not_found}
     end
   end
 
@@ -76,7 +76,7 @@ defmodule PhoenixLibrary.BooksTest do
       book = insert!(:book)
 
       assert {:ok, _} = Books.delete_book(book.id)
-      assert(Books.load_book(book.id) == {:error, :not_found})
+      assert(Books.find_book(book.id) == {:error, :not_found})
     end
 
     test "com um id inexistente retorna erro" do

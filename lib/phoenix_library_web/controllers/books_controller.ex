@@ -10,7 +10,7 @@ defmodule PhoenixLibraryWeb.BooksController do
   end
 
   def show(conn, %{"id" => id}) do
-    with {:ok, %Book{} = book} <- Books.load_book(id) do
+    with {:ok, %Book{} = book} <- Books.find_book(id) do
       render(conn, "show.json", book: book)
     end
   end

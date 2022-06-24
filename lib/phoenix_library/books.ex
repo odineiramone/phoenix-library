@@ -3,7 +3,7 @@ defmodule PhoenixLibrary.Books do
   Fornece funções para manipular registros de Book no banco de dados:
 
   - Função `create_book/1` para criar um novo livro.
-  - Função `load_book/1` para carregar um livro existente.
+  - Função `find_book/1` para carregar um livro existente.
   - Função `update_book/1` para atualizar um livro existente.
   - Função `delete_book/1` para deletar um livro existente.
   - Função `list_books/0` para listar todos os livros existentes no banco de dados.
@@ -57,14 +57,14 @@ defmodule PhoenixLibrary.Books do
   ## Exemplos
 
   ```elixir
-  iex> PhoenixLibrary.Books.load_book("0200e8de-69c0-4d88-982c-31721cb4af5c")
+  iex> PhoenixLibrary.Books.find_book("0200e8de-69c0-4d88-982c-31721cb4af5c")
   {:ok, %PhoenixLibrary.Books.Book{...}}
 
-  iex> PhoenixLibrary.Books.load_book("521675b8-df5d-495d-b579-4f2c69716318")
+  iex> PhoenixLibrary.Books.find_book("521675b8-df5d-495d-b579-4f2c69716318")
   {:error, #Ecto.Changeset<..., valid?: false>}
   ```
   """
-  def load_book(uuid) do
+  def find_book(uuid) do
     case Repo.get(Book, uuid) do
       nil -> {:error, :not_found}
       data -> {:ok, data}
@@ -97,7 +97,7 @@ defmodule PhoenixLibrary.Books do
   ```
   """
   def update_book(%{"id" => id} = params) do
-    case load_book(id) do
+    case find_book(id) do
       {:error, :not_found} -> {:error, :not_found}
       {:ok, entity} -> update_entity(entity, params)
     end
@@ -122,7 +122,7 @@ defmodule PhoenixLibrary.Books do
   ```
   """
   def delete_book(id) do
-    case load_book(id) do
+    case find_book(id) do
       {:error, :not_found} -> {:error, :not_found}
       {:ok, book} -> Repo.delete(book)
     end
