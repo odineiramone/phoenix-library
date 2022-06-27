@@ -1,9 +1,7 @@
 defmodule PhoenixLibraryWeb.FallbackController do
   use PhoenixLibraryWeb, :controller
 
-  def call(conn, {:error, "Not found!"} = error), do: not_found(conn, error)
-
-  def call(conn, {:error, "No search parameters!"} = error), do: not_found(conn, error)
+  def call(conn, {:error, :not_found}), do: not_found(conn)
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}), do: validations_issues(conn, changeset)
 
@@ -14,10 +12,10 @@ defmodule PhoenixLibraryWeb.FallbackController do
     |> render("400.json", changeset: changeset)
   end
 
-  defp not_found(conn, error) do
+  defp not_found(conn) do
     conn
     |> put_status(:not_found)
     |> put_view(PhoenixLibraryWeb.ErrorView)
-    |> render("404.json", message: error)
+    |> render("404.json", message: "Not found!")
   end
 end

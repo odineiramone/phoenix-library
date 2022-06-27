@@ -20,4 +20,5 @@ API de sistema de gerenciamento de biblioteca. Desafio de backend do [DevChallen
 
 ## Dicas úteis
 
-  - Para acessar um console interativo com as entidades da sua aplicação em phoenix carregadas, use `iex -S mix`
+  - Para acessar um console interativo com as entidades da sua aplicação em phoenix carregadas, use `iex -S mix`.
+  - Para gerar a documentação dos módulos usando o `ex_docs`, rode o seguinte comando no console `mix docs` e siga as instruções da tela.
