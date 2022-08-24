@@ -4,10 +4,10 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
   # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
-  alias PhoenixLibrary.Book
+  alias PhoenixLibrary.Books.Book
 
   test "renders 404.json" do
-    message = %{message: {:error, "Not found!"}}
+    message = %{message: "Not found!"}
 
     expected_response = %{
       data: %{book: "Not found!"},
@@ -18,7 +18,7 @@ defmodule PhoenixLibraryWeb.ErrorViewTest do
   end
 
   test "renders 400.json" do
-    changeset = Book.changeset_create(%{})
+    changeset = Book.create_changeset(%{})
 
     expected_response = %{
       data: %{

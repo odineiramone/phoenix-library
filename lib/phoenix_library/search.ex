@@ -1,27 +1,35 @@
 defmodule PhoenixLibrary.Search do
-  import Ecto.Query, only: [from: 2]
+  @moduledoc """
+  Fornece a função `call/1` para pesquisar livros por título ou autoria.
+  """
 
-  alias PhoenixLibrary.{Book, Repo}
+  alias PhoenixLibrary.Books
 
-  def call(%{"title" => search_term}), do: {:ok, by_title(search_term)}
+  @doc """
+  Retorna um chageset para criar um novo registro no banco de dados. Atualmente suporta
+  apenas busca por título (title) e autoria (authorship).
 
-  def call(%{"authorship" => search_term}), do: {:ok, by_authorship(search_term)}
+  ## Parâmetros
 
-  def call(%{}), do: {:error, "No search parameters!"}
+    - search_term: String que representa o termo a ser buscado.
 
-  defp by_title(search_term) do
-    wildcard_search = "%#{search_term}%"
+  ## Exemplos
 
-    from(book in Book, where: ilike(book.title, ^wildcard_search))
-    |> Repo.all()
-  end
+  ```elixir
+  iex> PhoenixLibrary.Search.call(%{"title" => "elixir"})
+  {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
 
-  defp by_authorship(search_term) do
-    wildcard_search = "%#{search_term}%"
+  iex> PhoenixLibrary.Search.call(%{"authorship" => "valim"})
+  {:ok, [%PhoenixLibrary.Books.Book{...}, %PhoenixLibrary.Books.Book{...}]}
 
-    from(book in Book,
-      where: ilike(fragment("ARRAY_TO_STRING(?, ',')", book.authorship), ^wildcard_search)
-    )
-    |> Repo.all()
-  end
+  iex> PhoenixLibrary.Search.call(%{"publisher" => "O'Reilly Media"})
+  {:error, :not_found}
+  iex> PhoenixLibrary.Search.call(%{})    
+
+  {:error, :not_found}
+  ```
+  """
+  def call(%{"title" => search_term}), do: {:ok, Books.by_title(search_term)}
+  def call(%{"authorship" => search_term}), do: {:ok, Books.by_authorship(search_term)}
+  def call(%{}), do: {:error, :not_found}
 end

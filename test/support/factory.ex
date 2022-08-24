@@ -1,8 +1,8 @@
 defmodule PhoenixLibrary.Factory do
-  alias PhoenixLibrary.Repo
+  alias PhoenixLibrary.{Books.Book, Repo}
 
   def build(:book) do
-    %PhoenixLibrary.Book{
+    %Book{
       title: "Viva La Vida Tosca",
       publisher: "Darkside",
       cover_photo: "https://i.imgur.com/ld0PA1c.png",
